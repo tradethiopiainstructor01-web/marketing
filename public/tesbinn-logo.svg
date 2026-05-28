@@ -1,0 +1,13 @@
+<svg width="320" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="96" rx="24" fill="transparent"/>
+  <g transform="translate(8 10)">
+    <circle cx="36" cy="36" r="28" fill="#F5C842" fill-opacity="0.16"/>
+    <path d="M24 30C24 21.1634 31.1634 14 40 14H42C50.8366 14 58 21.1634 58 30V32C58 40.8366 50.8366 48 42 48H40C31.1634 48 24 40.8366 24 32V30Z" fill="#F5C842"/>
+    <path d="M26 28C26 22.4772 30.4772 18 36 18C41.5228 18 46 22.4772 46 28V30H26V28Z" fill="#C8960C"/>
+    <path d="M58 32C58 23.1634 65.1634 16 74 16C82.8366 16 90 23.1634 90 32V34C90 42.8366 82.8366 50 74 50C65.1634 50 58 42.8366 58 34V32Z" fill="#F5C842" fill-opacity="0.92"/>
+    <path d="M65 30C65 24.4772 69.4772 20 75 20C80.5228 20 85 24.4772 85 30V32H65V30Z" fill="#D98F00"/>
+  </g>
+  <text x="112" y="34" fill="#F5C842" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="3">TESBINN</text>
+  <text x="112" y="58" fill="#D4A200" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="3">COFFEE CUPPING TRAINING</text>
+  <text x="112" y="76" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" letter-spacing="2">TESBINN.COM</text>
+</svg>
