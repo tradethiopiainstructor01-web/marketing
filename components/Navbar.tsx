@@ -53,7 +53,7 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:px-4 md:px-8">
         <a href="#home" className="flex min-w-0 items-center gap-3 sm:gap-4">
           <img
-            src="/tesbinn-logo.svg"
+            src="/tesbinn-logo.png"
             alt="TESBINN Logo"
             className="h-12 w-auto sm:h-14 drop-shadow-md"
             style={{ maxWidth: 180 }}
