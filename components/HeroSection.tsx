@@ -37,18 +37,18 @@ export default function HeroSection({ theme, lang }: { theme: 'dark' | 'light'; 
         >
           <div className={`inline-flex items-center gap-3 rounded-full border px-4 py-2 text-xs uppercase tracking-[0.35em] shadow-[0_12px_50px_rgba(15,23,42,0.08)] ${pillClass}`}>
             <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#F5C842]" />
-            {lang === 'en' ? '☕️ 2. BARISTA TRAINING' : '☕️ 2. ባሪስታ ስልጠና'}
+            {lang === 'en' ? ' BARISTA TRAINING' : ' ባሪስታ ስልጠና'}
           </div>
 
           <div className="space-y-5">
             <h1 className={`max-w-4xl text-[clamp(2.25rem,9vw,5.2rem)] font-heading uppercase leading-[0.95] tracking-[-0.04em] ${isDark ? 'text-white' : 'text-slate-950'}`}>
-              {lang === 'en' ? 'HOW TO START A CAREER IN THE COFFEE INDUSTRY' : 'በቡና ኢንዱስትሪ የስራ መነሻ እንዴት መጀመር እንደሚቻል'}
-              <span className={`block ${accentClass}`}>{lang === 'en' ? 'WORKSHOP TITLE' : 'የስልጠና ርዕስ'}</span>
+              {lang === 'en' ? 'HOW TO START A CAREER IN THE COFFEE INDUSTRY' : 'የባሪስታን ስራ እንዴት መጀመር እንደሚቻል ይማሩ'}
+              
             </h1>
             <p className={`max-w-2xl text-base leading-7 sm:text-lg sm:leading-8 lg:text-xl ${mutedClass}`}>
               {lang === 'en'
-                ? 'Workshop Title: “How to Start a Career in the Coffee Industry” — a practical barista training experience covering career paths, café business opportunities, coffee culture growth, and a live espresso demo.'
-                : 'የስልጠና ርዕስ: “በቡና ኢንዱስትሪ የስራ መነሻ እንዴት መጀመር እንደሚቻል” — የባሪስታ ስልጠና ተግባራዊ ልምድ የስራ መንገዶችን፣ የካፌ የንግድ እድሎችን፣ የቡና ባህል እድገትን እና የቀጥታ ኤስፕሬሶ ማሳያን ያካትታል።'}
+                ? ' “How to Start a Career in the Coffee Industry” — a practical barista training experience covering career paths, café business opportunities, coffee culture growth, and a live espresso demo.'
+                : '“በቡና ኢንዱስትሪ የስራ መነሻ እንዴት መጀመር እንደሚቻል ይማሩ” — የባሪስታ ስልጠና ተግባራዊ ልምድ የስራ መንገዶችን፣ የካፌ የንግድ እድሎችን፣ የቡና ባህል እድገትን እና የቀጥታ ኤስፕሬሶ ማሳያን ያካትታል።'}
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export default function HeroSection({ theme, lang }: { theme: 'dark' | 'light'; 
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              href="tel:+251911000000"
+              href="tel:+251909636575"
               className="flex min-h-[60px] items-center justify-center gap-3 rounded-full bg-[#F5C842] px-8 text-base font-bold uppercase tracking-[0.18em] text-[#0B0B0B] shadow-[0_24px_48px_rgba(245,200,66,0.24)]"
             >
               📞 {lang === 'en' ? 'Call Now' : 'አሁን ይደውሉ'}
@@ -64,7 +64,7 @@ export default function HeroSection({ theme, lang }: { theme: 'dark' | 'light'; 
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              href="https://wa.me/251911000000"
+              href="https://wa.me/251909636575"
               className="flex min-h-[60px] items-center justify-center gap-3 rounded-full bg-[#0d4d8f] px-8 text-base font-bold uppercase tracking-[0.18em] text-white shadow-[0_16px_42px_rgba(13,77,143,0.24)]"
             >
               💬 {lang === 'en' ? 'WhatsApp Us' : 'በWhatsApp ይጻፉ'}

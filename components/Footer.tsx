@@ -6,7 +6,7 @@ export default function Footer({ theme, lang }: { theme: 'dark' | 'light'; lang:
       <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
         <div className="max-w-xl">
           <div className="flex items-center gap-4">
-            <img src="/tesbinn-logo.svg" alt="TESBINN Logo" className="h-12 w-auto" />
+            <img src="/tesbinn-logo-footer.png" alt="TESBINN Logo" className="h-14 w-auto drop-shadow-md" />
             <p className="font-heading text-3xl tracking-[0.18em] text-[#C8960C]">TESBINN</p>
           </div>
           <p className="mt-4 text-sm leading-7 text-[var(--text-muted)]">
