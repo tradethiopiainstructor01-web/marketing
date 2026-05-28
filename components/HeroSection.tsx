@@ -37,18 +37,18 @@ export default function HeroSection({ theme, lang }: { theme: 'dark' | 'light'; 
         >
           <div className={`inline-flex items-center gap-3 rounded-full border px-4 py-2 text-xs uppercase tracking-[0.35em] shadow-[0_12px_50px_rgba(15,23,42,0.08)] ${pillClass}`}>
             <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#F5C842]" />
-            {lang === 'en' ? 'Coffee career training' : 'የቡና ሙያ ስልጠና'}
+            {lang === 'en' ? '☕️ 2. BARISTA TRAINING' : '☕️ 2. ባሪስታ ስልጠና'}
           </div>
 
           <div className="space-y-5">
             <h1 className={`max-w-4xl text-[clamp(2.25rem,9vw,5.2rem)] font-heading uppercase leading-[0.95] tracking-[-0.04em] ${isDark ? 'text-white' : 'text-slate-950'}`}>
-              {lang === 'en' ? 'TURN YOUR PASSION FOR COFFEE' : 'የቡና ፍቅርህን'}
-              <span className={`block ${accentClass}`}>{lang === 'en' ? 'INTO A HIGH-INCOME SKILL' : 'ወደ ከፍተኛ ገቢ ክህሎት ቀይር'}</span>
+              {lang === 'en' ? 'HOW TO START A CAREER IN THE COFFEE INDUSTRY' : 'በቡና ኢንዱስትሪ የስራ መነሻ እንዴት መጀመር እንደሚቻል'}
+              <span className={`block ${accentClass}`}>{lang === 'en' ? 'WORKSHOP TITLE' : 'የስልጠና ርዕስ'}</span>
             </h1>
             <p className={`max-w-2xl text-base leading-7 sm:text-lg sm:leading-8 lg:text-xl ${mutedClass}`}>
               {lang === 'en'
-                ? 'Learn espresso, latte craft, coffee business systems, and export-ready operations with a modern coffee academy designed for ambitious professionals.'
-                : 'ኤስፕሬሶ፣ ላቴ ስራ፣ የቡና ንግድ ስርዓቶች እና ወደ ውጭ ለመላክ ዝግጁ ክወናዎችን በዘመናዊ የቡና አካዳሚ ይማሩ።'}
+                ? 'Workshop Title: “How to Start a Career in the Coffee Industry” — a practical barista training experience covering career paths, café business opportunities, coffee culture growth, and a live espresso demo.'
+                : 'የስልጠና ርዕስ: “በቡና ኢንዱስትሪ የስራ መነሻ እንዴት መጀመር እንደሚቻል” — የባሪስታ ስልጠና ተግባራዊ ልምድ የስራ መንገዶችን፣ የካፌ የንግድ እድሎችን፣ የቡና ባህል እድገትን እና የቀጥታ ኤስፕሬሶ ማሳያን ያካትታል።'}
             </p>
           </div>
 

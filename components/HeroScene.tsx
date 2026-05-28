@@ -53,11 +53,11 @@ function Saucer() {
     <group ref={ref}>
       <mesh position={[0, -0.14, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.35, 0.08, 48, 120]} />
-        <meshStandardMaterial color="#F6F6F4" metalness={0.1} roughness={0.42} />
+        <meshStandardMaterial color="#E8C56B" metalness={0.15} roughness={0.35} emissive="#F7E1A2" emissiveIntensity={0.05} />
       </mesh>
       <mesh position={[0, -0.12, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[1.05, 1.25, 64, 1]} />
-        <meshStandardMaterial color="#E9E9E7" metalness={0.08} roughness={0.45} />
+        <meshStandardMaterial color="#D8B04B" metalness={0.18} roughness={0.4} emissive="#F6D98A" emissiveIntensity={0.06} />
       </mesh>
     </group>
   );
@@ -70,7 +70,7 @@ function CoffeeCup() {
 
   useFrame((_, delta) => {
     if (groupRef.current && !dragging.current) {
-      groupRef.current.rotation.y += delta * 0.09;
+      groupRef.current.rotation.y += delta * 0.14;
     }
   });
 
@@ -164,7 +164,7 @@ export default function HeroScene() {
   }
 
   return (
-    <div className="relative mx-auto h-[420px] w-full overflow-hidden rounded-[40px] border border-white/20 bg-gradient-to-br from-[#eaf6ff] via-[#d7ecff] to-[#c5dff4] shadow-glow sm:h-[520px]">
+    <div className="relative mx-auto h-[320px] w-full overflow-hidden rounded-[32px] border border-white/20 bg-gradient-to-br from-[#eaf6ff] via-[#d7ecff] to-[#c5dff4] shadow-glow sm:h-[520px] sm:rounded-[40px]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.5),transparent_35%)]" />
       <Canvas
         camera={{ position: [0, 1.6, 5], fov: 42 }}
@@ -179,7 +179,7 @@ export default function HeroScene() {
         <spotLight position={[0, 6, 4]} angle={0.34} intensity={1.55} penumbra={0.45} castShadow color="#FFF2A1" />
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.24, 0]}>
           <circleGeometry args={[4.5, 64]} />
-          <meshStandardMaterial color="#EFF6FF" metalness={0.05} roughness={0.55} emissive="#dfe8fb" emissiveIntensity={0.06} />
+          <meshStandardMaterial color="#0B1728" metalness={0.08} roughness={0.45} emissive="#13263F" emissiveIntensity={0.08} />
         </mesh>
         <Saucer />
         <CoffeeCup />

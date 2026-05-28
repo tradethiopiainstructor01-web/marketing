@@ -89,12 +89,12 @@ export default function Navbar({ theme, lang, onToggleTheme, onToggleLang }: { t
         <button
           type="button"
           onClick={() => setOpen((current) => !current)}
-          className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl border shadow-sm lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#142b4b] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
+          className={`inline-flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border shadow-sm lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#142b4b] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
           aria-label="Toggle navigation"
         >
           <span className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
-          <span className={`mt-1.5 block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
-          <span className={`mt-1.5 block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
+          <span className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
+          <span className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
         </button>
       </div>
 

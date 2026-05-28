@@ -3,12 +3,19 @@
 export default function Footer({ theme, lang }: { theme: 'dark' | 'light'; lang: 'en' | 'am' }) {
   return (
     <footer className="border-t border-white/10 bg-[#081627] px-4 py-14 text-white md:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-        <div>
-          <p className="font-heading text-3xl tracking-[0.18em] text-[#C8960C]">TESBINN</p>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--text-muted)]">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-4">
+            <img src="/tesbinn-logo.svg" alt="TESBINN Logo" className="h-12 w-auto" />
+            <p className="font-heading text-3xl tracking-[0.18em] text-[#C8960C]">TESBINN</p>
+          </div>
+          <p className="mt-4 text-sm leading-7 text-[var(--text-muted)]">
             Next-level coffee career training for baristas, exporters, and founders focused on real business growth.
           </p>
+          <div className="mt-6 space-y-2 text-sm text-white/80">
+            <p>Bole Medhanialem, Helzer Tower, 8th Floor, Addis Ababa, Ethiopia</p>
+            <p>Email: training@tesbinn.com</p>
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">
