@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 
 const links = [
@@ -11,9 +11,17 @@ const links = [
   { labelEn: 'Reviews', labelAm: 'አስተያየቶች', href: '#testimonials' },
 ];
 
-export default function Navbar({ theme, lang, onToggleTheme, onToggleLang }: { theme: 'dark' | 'light'; lang: 'en' | 'am'; onToggleTheme: () => void; onToggleLang: () => void; }) {
+export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu, onToggleTheme, onToggleLang }: { theme: 'dark' | 'light'; lang: 'en' | 'am'; mobileMenuOpen: boolean; onToggleMobileMenu: (value: boolean) => void; onToggleTheme: () => void; onToggleLang: () => void; }) {
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    const isOpen = open || mobileMenuOpen;
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open, mobileMenuOpen]);
   const isDark = theme === 'dark';
   const background = useTransform(scrollY, [0, 140], [isDark ? 'rgba(8, 10, 16, 0.06)' : 'rgba(248, 250, 252, 0.78)', isDark ? 'rgba(8, 10, 16, 0.96)' : 'rgba(248, 250, 252, 0.98)']);
   const blur = useTransform(scrollY, [0, 140], ['0px', '24px']);
@@ -88,7 +96,11 @@ export default function Navbar({ theme, lang, onToggleTheme, onToggleLang }: { t
 
         <button
           type="button"
-          onClick={() => setOpen((current) => !current)}
+          onClick={() => {
+            const next = !open;
+            setOpen(next);
+            onToggleMobileMenu(next);
+          }}
           className={`inline-flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border shadow-sm lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#142b4b] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
           aria-label="Toggle navigation"
         >
@@ -105,7 +117,7 @@ export default function Navbar({ theme, lang, onToggleTheme, onToggleLang }: { t
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ type: 'spring', stiffness: 160, damping: 22 }}
-            className={`fixed inset-x-0 top-[72px] z-40 border-t backdrop-blur-2xl lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#0b1d34]/98 text-white' : 'border-slate-200 bg-white/95 text-slate-900'}`}
+            className={`fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-y-auto border-t backdrop-blur-2xl lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#0b1d34]/98 text-white' : 'border-slate-200 bg-white/95 text-slate-900'}`}
           >
             <div className="mx-auto max-w-3xl space-y-3 px-3 py-5 sm:px-4">
               <div className="flex flex-wrap items-center gap-3 rounded-3xl border border-white/10 bg-black/5 p-3 sm:gap-4">
@@ -117,7 +129,10 @@ export default function Navbar({ theme, lang, onToggleTheme, onToggleLang }: { t
                   key={link.href}
                   href={link.href}
                   className={`block rounded-3xl border px-4 py-4 text-lg font-semibold uppercase ${theme === 'dark' ? 'border-white/10 bg-[#11151f] text-white' : 'border-slate-200 bg-slate-50 text-slate-900'}`}
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    onToggleMobileMenu(false);
+                  }}
                 >
                   {lang === 'en' ? link.labelEn : link.labelAm}
                 </a>
@@ -127,7 +142,10 @@ export default function Navbar({ theme, lang, onToggleTheme, onToggleLang }: { t
                 whileTap={{ scale: 0.95 }}
                 href="https://wa.me/251911000000"
                 className="block rounded-3xl bg-[#C8960C] px-4 py-4 text-center text-lg font-semibold uppercase text-[#0A0A0A]"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  onToggleMobileMenu(false);
+                }}
               >
                 {lang === 'en' ? 'Get Started' : 'ጀምር'}
               </motion.a>

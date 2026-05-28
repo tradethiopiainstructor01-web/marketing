@@ -24,6 +24,7 @@ const fadeUp = {
 export default function HomePage() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [lang, setLang] = useState<'en' | 'am'>('en');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const themeClasses = theme === 'dark'
     ? 'bg-gradient-to-b from-[#081528] via-[#06111f] to-[#050b14] text-white'
@@ -33,7 +34,14 @@ export default function HomePage() {
     <main className={`relative min-h-screen overflow-x-visible ${themeClasses}`}>
       <SplashScreen />
       <ScrollProgress />
-      <Navbar theme={theme} lang={lang} onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))} onToggleLang={() => setLang((l) => (l === 'en' ? 'am' : 'en'))} />
+      <Navbar
+        theme={theme}
+        lang={lang}
+        mobileMenuOpen={mobileMenuOpen}
+        onToggleMobileMenu={setMobileMenuOpen}
+        onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+        onToggleLang={() => setLang((l) => (l === 'en' ? 'am' : 'en'))}
+      />
       <Ticker />
       <HeroSection theme={theme} lang={lang} />
       <motion.section {...fadeUp}>
