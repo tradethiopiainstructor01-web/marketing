@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 
 const links = [
@@ -12,17 +12,15 @@ const links = [
 ];
 
 export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu, onToggleTheme, onToggleLang }: { theme: 'dark' | 'light'; lang: 'en' | 'am'; mobileMenuOpen: boolean; onToggleMobileMenu: (value: boolean) => void; onToggleTheme: () => void; onToggleLang: () => void; }) {
-  const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
-  const isMenuOpen = open || mobileMenuOpen;
+  const isMenuOpen = mobileMenuOpen;
 
   useEffect(() => {
-    const isOpen = open || mobileMenuOpen;
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [open, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
   const isDark = theme === 'dark';
   const background = useTransform(scrollY, [0, 140], [isDark ? 'rgba(8, 10, 16, 0.06)' : 'rgba(248, 250, 252, 0.78)', isDark ? 'rgba(8, 10, 16, 0.96)' : 'rgba(248, 250, 252, 0.98)']);
   const blur = useTransform(scrollY, [0, 140], ['0px', '24px']);
@@ -47,91 +45,94 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
   );
 
   return (
-    <motion.nav
-      style={{ backdropFilter: blur, background: background, boxShadow: shadow }}
-      className={`fixed inset-x-0 top-0 z-50 border-b ${navTheme} backdrop-blur-xl`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:px-4 md:px-8">
-        <a href="#home" className="flex min-w-0 items-center gap-3 sm:gap-4">
-          <img
-            src="/tesbinn-logo.png"
-            alt="TESBINN Logo"
-            className="h-12 w-auto sm:h-14 drop-shadow-md"
-            style={{ maxWidth: 180 }}
-          />
-        </a>
+    <>
+      <motion.nav
+        style={{ backdropFilter: blur, background: background, boxShadow: shadow }}
+        className={`fixed inset-x-0 top-0 z-50 border-b ${navTheme} backdrop-blur-xl`}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:px-4 md:px-8">
+          <a href="#home" className="flex min-w-0 items-center gap-3 sm:gap-4">
+            <img
+              src="/tesbinn-logo.png"
+              alt="TESBINN Logo"
+              className="h-12 w-auto sm:h-14 drop-shadow-md"
+              style={{ maxWidth: 180 }}
+            />
+          </a>
 
-        <div className="hidden items-center gap-8 lg:flex">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`group text-sm font-medium uppercase tracking-[0.2em] transition ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
+          <div className="hidden items-center gap-8 lg:flex">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`group text-sm font-medium uppercase tracking-[0.2em] transition ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
+              >
+                {lang === 'en' ? link.labelEn : link.labelAm}
+                <span className="mt-1 block h-[1px] w-full scale-x-0 bg-[#F5C842] transition-transform duration-300 group-hover:scale-x-100" />
+              </a>
+            ))}
+          </div>
+
+          <div className="hidden items-center gap-2 lg:flex">
+            <Toggle label={lang === 'en' ? 'AM' : 'EN'} enabled={lang === 'am'} onClick={onToggleLang} />
+            <Toggle label={theme === 'dark' ? 'Light' : 'Dark'} enabled={theme === 'dark'} onClick={onToggleTheme} />
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
+              href="https://wa.me/251911000000"
+              className={`inline-flex min-h-[52px] items-center justify-center rounded-full border px-5 text-sm font-semibold uppercase tracking-[0.22em] backdrop-blur-xl ${theme === 'dark' ? 'border-white/10 bg-white/5 text-white' : 'border-slate-200 bg-white text-slate-900'}`}
             >
-              {lang === 'en' ? link.labelEn : link.labelAm}
-              <span className="mt-1 block h-[1px] w-full scale-x-0 bg-[#F5C842] transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
-          ))}
-        </div>
+              {lang === 'en' ? 'Help' : 'እርዳታ'}
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
+              href="https://wa.me/251911000000"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#C8960C] px-5 text-sm font-bold uppercase tracking-[0.22em] text-[#0A0A0A] shadow-[0_24px_50px_rgba(200,150,12,0.24)]"
+            >
+              {lang === 'en' ? 'Get Started' : 'ጀምር'}
+            </motion.a>
+          </div>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          <Toggle label={lang === 'en' ? 'AM' : 'EN'} enabled={lang === 'am'} onClick={onToggleLang} />
-          <Toggle label={theme === 'dark' ? 'Light' : 'Dark'} enabled={theme === 'dark'} onClick={onToggleTheme} />
-          <motion.a
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.96 }}
-            href="https://wa.me/251911000000"
-            className={`inline-flex min-h-[52px] items-center justify-center rounded-full border px-5 text-sm font-semibold uppercase tracking-[0.22em] backdrop-blur-xl ${theme === 'dark' ? 'border-white/10 bg-white/5 text-white' : 'border-slate-200 bg-white text-slate-900'}`}
+          <button
+            type="button"
+            onClick={() => {
+              const next = !isMenuOpen;
+              onToggleMobileMenu(next);
+            }}
+            className={`inline-flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border shadow-sm lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#142b4b] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
+            aria-label="Toggle navigation"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
-            {lang === 'en' ? 'Help' : 'እርዳታ'}
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.96 }}
-            href="https://wa.me/251911000000"
-            className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#C8960C] px-5 text-sm font-bold uppercase tracking-[0.22em] text-[#0A0A0A] shadow-[0_24px_50px_rgba(200,150,12,0.24)]"
-          >
-            {lang === 'en' ? 'Get Started' : 'ጀምር'}
-          </motion.a>
+            <motion.span
+              animate={{ rotate: isMenuOpen ? 45 : 0, y: isMenuOpen ? 6 : 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+              className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
+            />
+            <motion.span
+              animate={{ opacity: isMenuOpen ? 0 : 1, x: isMenuOpen ? -8 : 0 }}
+              transition={{ duration: 0.15 }}
+              className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
+            />
+            <motion.span
+              animate={{ rotate: isMenuOpen ? -45 : 0, y: isMenuOpen ? -6 : 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+              className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
+            />
+          </button>
         </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            const next = !isMenuOpen;
-            setOpen(next);
-            onToggleMobileMenu(next);
-          }}
-          className={`inline-flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border shadow-sm lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#142b4b] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
-          aria-label="Toggle navigation"
-          aria-expanded={isMenuOpen}
-        >
-          <motion.span
-            animate={{ rotate: isMenuOpen ? 45 : 0, y: isMenuOpen ? 6 : 0 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-            className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
-          />
-          <motion.span
-            animate={{ opacity: isMenuOpen ? 0 : 1, x: isMenuOpen ? -8 : 0 }}
-            transition={{ duration: 0.15 }}
-            className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
-          />
-          <motion.span
-            animate={{ rotate: isMenuOpen ? -45 : 0, y: isMenuOpen ? -6 : 0 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-            className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
-          />
-        </button>
-      </div>
+      </motion.nav>
 
       <AnimatePresence>
-        {open && (
+        {isMenuOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ type: 'spring', stiffness: 160, damping: 22 }}
-            className={`fixed inset-x-0 top-[72px] bottom-0 z-40 overflow-y-auto border-t backdrop-blur-2xl lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#0b1d34]/98 text-white' : 'border-slate-200 bg-white/95 text-slate-900'}`}
+            className={`fixed inset-x-0 bottom-0 top-[72px] z-[60] overflow-y-auto border-t backdrop-blur-2xl lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#0b1d34] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
           >
             <div className="mx-auto max-w-3xl space-y-3 px-3 py-5 sm:px-4">
               <div className="flex flex-wrap items-center gap-3 rounded-3xl border border-white/10 bg-black/5 p-3 sm:gap-4">
@@ -144,7 +145,6 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
                   href={link.href}
                   className={`block rounded-3xl border px-4 py-4 text-lg font-semibold uppercase ${theme === 'dark' ? 'border-white/10 bg-[#11151f] text-white' : 'border-slate-200 bg-slate-50 text-slate-900'}`}
                   onClick={() => {
-                    setOpen(false);
                     onToggleMobileMenu(false);
                   }}
                 >
@@ -157,7 +157,6 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
                 href="https://wa.me/251911000000"
                 className="block rounded-3xl bg-[#C8960C] px-4 py-4 text-center text-lg font-semibold uppercase text-[#0A0A0A]"
                 onClick={() => {
-                  setOpen(false);
                   onToggleMobileMenu(false);
                 }}
               >
@@ -167,6 +166,6 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 }
