@@ -14,6 +14,7 @@ const links = [
 export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu, onToggleTheme, onToggleLang }: { theme: 'dark' | 'light'; lang: 'en' | 'am'; mobileMenuOpen: boolean; onToggleMobileMenu: (value: boolean) => void; onToggleTheme: () => void; onToggleLang: () => void; }) {
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
+  const isMenuOpen = open || mobileMenuOpen;
 
   useEffect(() => {
     const isOpen = open || mobileMenuOpen;
@@ -97,16 +98,29 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
         <button
           type="button"
           onClick={() => {
-            const next = !open;
+            const next = !isMenuOpen;
             setOpen(next);
             onToggleMobileMenu(next);
           }}
           className={`inline-flex h-12 w-12 flex-col items-center justify-center gap-1.5 rounded-2xl border shadow-sm lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#142b4b] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
           aria-label="Toggle navigation"
+          aria-expanded={isMenuOpen}
         >
-          <span className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
-          <span className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
-          <span className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`} />
+          <motion.span
+            animate={{ rotate: isMenuOpen ? 45 : 0, y: isMenuOpen ? 6 : 0 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+            className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
+          />
+          <motion.span
+            animate={{ opacity: isMenuOpen ? 0 : 1, x: isMenuOpen ? -8 : 0 }}
+            transition={{ duration: 0.15 }}
+            className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
+          />
+          <motion.span
+            animate={{ rotate: isMenuOpen ? -45 : 0, y: isMenuOpen ? -6 : 0 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+            className={`block h-0.5 w-6 rounded-full ${theme === 'dark' ? 'bg-white' : 'bg-slate-900'}`}
+          />
         </button>
       </div>
 
