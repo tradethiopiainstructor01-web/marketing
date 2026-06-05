@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
 const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false });
 
 const stats = [
-  { icon: '☕', labelEn: 'Barista Ready', labelAm: 'ባሪስታ ዝግጁ', valueEn: 'Fast-track skill', valueAm: 'ፈጣን የክህሎት መንገድ' },
-  { icon: '🚀', labelEn: 'Business Growth', labelAm: 'የንግድ እድገት', valueEn: 'Startup-ready systems', valueAm: 'ለስታርትአፕ ዝግጁ ስርዓቶች' },
-  { icon: '🌍', labelEn: 'Export Access', labelAm: 'ወደ ውጭ ማውጣት', valueEn: 'Global coffee routes', valueAm: 'ዓለም አቀፍ የቡና መንገዶች' },
+  { icon: '☕', labelEn: 'How to be Barista', labelAm: 'ባሪስታ እንዴት መሆን ይቻላል', valueEn: 'Fast-track skill', valueAm: 'ፈጣን የክህሎት መንገድ' },
+  { icon: '🚀', labelEn: 'Business Growth', labelAm: 'ንግድን እንዴት እናሳድግ', valueEn: 'Startup-ready systems', valueAm: 'ለስታርትአፕ ዝግጁ ስርዓቶች' },
+  { icon: '🌍', labelEn: 'Export Access', labelAm: 'ወደ ውጭ መላክ', valueEn: 'Global coffee routes', valueAm: 'ዓለም አቀፍ የቡና ንግድ' },
 ];
 
 export default function HeroSection({ theme, lang }: { theme: 'dark' | 'light'; lang: 'en' | 'am' }) {
@@ -48,7 +48,7 @@ export default function HeroSection({ theme, lang }: { theme: 'dark' | 'light'; 
             <p className={`max-w-2xl text-base leading-7 sm:text-lg sm:leading-8 lg:text-xl ${mutedClass}`}>
               {lang === 'en'
                 ? ' “How to Start a Career in the Coffee Industry” — a practical barista training experience covering career paths, café business opportunities, coffee culture growth, and a live espresso demo.'
-                : '“በቡና ኢንዱስትሪ የስራ መነሻ እንዴት መጀመር እንደሚቻል ይማሩ” — የባሪስታ ስልጠና ተግባራዊ ልምድ የስራ መንገዶችን፣ የካፌ የንግድ እድሎችን፣ የቡና ባህል እድገትን እና የቀጥታ ኤስፕሬሶ ማሳያን ያካትታል።'}
+                : '“የቡና ኢንዱስትሪን በቀላሉ የስራ እንዴት መጀመር እንደሚቻል ይማሩ” — የባሪስታ ስልጠና ተግባራዊ ልምድ የስራ መንገዶችን፣ የካፌ የንግድ እድሎችን፣ የቡና ባህል እድገትን እና የቀጥታ ኤስፕሬሶ አሰራርን ያካትታል።'}
             </p>
           </div>
 

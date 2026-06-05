@@ -5,10 +5,10 @@ import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 
 const links = [
   { labelEn: 'Home', labelAm: 'መነሻ', href: '#home' },
-  { labelEn: 'Training', labelAm: 'ስልጠና', href: '#learn' },
-  { labelEn: 'Who', labelAm: 'ማን', href: '#who' },
-  { labelEn: 'Why', labelAm: 'ለምን', href: '#why' },
-  { labelEn: 'Reviews', labelAm: 'አስተያየቶች', href: '#testimonials' },
+  { labelEn: 'Training', labelAm: 'የስልጠናው አይነት', href: '#learn' },
+  { labelEn: 'Who', labelAm: 'ለማን ተዘጋጀ ', href: '#who' },
+  { labelEn: 'Why', labelAm: 'ለምን ተዘጋጀ', href: '#why' },
+  { labelEn: 'Reviews', labelAm: 'አስተያየቶች ካሎት', href: '#testimonials' },
 ];
 
 export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu, onToggleTheme, onToggleLang }: { theme: 'dark' | 'light'; lang: 'en' | 'am'; mobileMenuOpen: boolean; onToggleMobileMenu: (value: boolean) => void; onToggleTheme: () => void; onToggleLang: () => void; }) {
@@ -79,7 +79,7 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              href="https://wa.me/251911000000"
+              href="https://wa.me/251909636575"
               className={`inline-flex min-h-[52px] items-center justify-center rounded-full border px-5 text-sm font-semibold uppercase tracking-[0.22em] backdrop-blur-xl ${theme === 'dark' ? 'border-white/10 bg-white/5 text-white' : 'border-slate-200 bg-white text-slate-900'}`}
             >
               {lang === 'en' ? 'Help' : 'እርዳታ'}
@@ -87,7 +87,7 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              href="https://wa.me/251911000000"
+              href="https://wa.me/251909636575"
               className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#C8960C] px-5 text-sm font-bold uppercase tracking-[0.22em] text-[#0A0A0A] shadow-[0_24px_50px_rgba(200,150,12,0.24)]"
             >
               {lang === 'en' ? 'Get Started' : 'ጀምር'}

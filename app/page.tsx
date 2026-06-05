@@ -22,8 +22,8 @@ const fadeUp = {
 };
 
 export default function HomePage() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const [lang, setLang] = useState<'en' | 'am'>('en');
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  const [lang, setLang] = useState<'en' | 'am'>('am');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const themeClasses = theme === 'dark'
