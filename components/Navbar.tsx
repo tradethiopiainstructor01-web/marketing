@@ -3,7 +3,13 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 
-const links = [
+type NavLink = {
+  labelEn: string;
+  labelAm: string;
+  href: string;
+};
+
+const defaultLinks: NavLink[] = [
   { labelEn: 'Home', labelAm: 'መነሻ', href: '#home' },
   { labelEn: 'Training', labelAm: 'የስልጠናው አይነት', href: '#learn' },
   { labelEn: 'Who', labelAm: 'ለማን ተዘጋጀ ', href: '#who' },
@@ -11,7 +17,33 @@ const links = [
   { labelEn: 'Reviews', labelAm: 'አስተያየቶች ካሎት', href: '#testimonials' },
 ];
 
-export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu, onToggleTheme, onToggleLang }: { theme: 'dark' | 'light'; lang: 'en' | 'am'; mobileMenuOpen: boolean; onToggleMobileMenu: (value: boolean) => void; onToggleTheme: () => void; onToggleLang: () => void; }) {
+export default function Navbar({
+  theme,
+  lang,
+  mobileMenuOpen,
+  onToggleMobileMenu,
+  onToggleTheme,
+  onToggleLang,
+  links = defaultLinks,
+  homeHref = '#home',
+  ctaHref = 'https://wa.me/251909636575',
+  helpHref = 'https://wa.me/251909636575',
+  showThemeToggle = true,
+  showLangToggle = true,
+}: {
+  theme: 'dark' | 'light';
+  lang: 'en' | 'am';
+  mobileMenuOpen: boolean;
+  onToggleMobileMenu: (value: boolean) => void;
+  onToggleTheme: () => void;
+  onToggleLang: () => void;
+  links?: NavLink[];
+  homeHref?: string;
+  ctaHref?: string;
+  helpHref?: string;
+  showThemeToggle?: boolean;
+  showLangToggle?: boolean;
+}) {
   const { scrollY } = useScroll();
   const isMenuOpen = mobileMenuOpen;
 
@@ -51,7 +83,7 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
         className={`fixed inset-x-0 top-0 z-50 border-b ${navTheme} backdrop-blur-xl`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:px-4 md:px-8">
-          <a href="#home" className="flex min-w-0 items-center gap-3 sm:gap-4">
+          <a href={homeHref} className="flex min-w-0 items-center gap-3 sm:gap-4">
             <img
               src="/tesbinn-logo.png"
               alt="TESBINN Logo"
@@ -74,12 +106,12 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
           </div>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <Toggle label={lang === 'en' ? 'AM' : 'EN'} enabled={lang === 'am'} onClick={onToggleLang} />
-            <Toggle label={theme === 'dark' ? 'Light' : 'Dark'} enabled={theme === 'dark'} onClick={onToggleTheme} />
+            {showLangToggle && <Toggle label={lang === 'en' ? 'AM' : 'EN'} enabled={lang === 'am'} onClick={onToggleLang} />}
+            {showThemeToggle && <Toggle label={theme === 'dark' ? 'Light' : 'Dark'} enabled={theme === 'dark'} onClick={onToggleTheme} />}
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              href="https://wa.me/251909636575"
+              href={helpHref}
               className={`inline-flex min-h-[52px] items-center justify-center rounded-full border px-5 text-sm font-semibold uppercase tracking-[0.22em] backdrop-blur-xl ${theme === 'dark' ? 'border-white/10 bg-white/5 text-white' : 'border-slate-200 bg-white text-slate-900'}`}
             >
               {lang === 'en' ? 'Help' : 'እርዳታ'}
@@ -87,7 +119,7 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
-              href="https://wa.me/251909636575"
+              href={ctaHref}
               className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#C8960C] px-5 text-sm font-bold uppercase tracking-[0.22em] text-[#0A0A0A] shadow-[0_24px_50px_rgba(200,150,12,0.24)]"
             >
               {lang === 'en' ? 'Get Started' : 'ጀምር'}
@@ -135,10 +167,12 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
             className={`fixed inset-x-0 bottom-0 top-[72px] z-[60] overflow-y-auto border-t backdrop-blur-2xl lg:hidden ${theme === 'dark' ? 'border-white/10 bg-[#0b1d34] text-white' : 'border-slate-200 bg-white text-slate-900'}`}
           >
             <div className="mx-auto max-w-3xl space-y-3 px-3 py-5 sm:px-4">
-              <div className="flex flex-wrap items-center gap-3 rounded-3xl border border-white/10 bg-black/5 p-3 sm:gap-4">
-                <Toggle label={lang === 'en' ? 'Language' : 'ቋንቋ'} enabled={lang === 'am'} onClick={onToggleLang} />
-                <Toggle label={theme === 'dark' ? 'Bright' : 'Dark'} enabled={theme === 'dark'} onClick={onToggleTheme} />
-              </div>
+              {(showLangToggle || showThemeToggle) && (
+                <div className="flex flex-wrap items-center gap-3 rounded-3xl border border-white/10 bg-black/5 p-3 sm:gap-4">
+                  {showLangToggle && <Toggle label={lang === 'en' ? 'Language' : 'ቋንቋ'} enabled={lang === 'am'} onClick={onToggleLang} />}
+                  {showThemeToggle && <Toggle label={theme === 'dark' ? 'Bright' : 'Dark'} enabled={theme === 'dark'} onClick={onToggleTheme} />}
+                </div>
+              )}
               {links.map((link) => (
                 <a
                   key={link.href}
@@ -154,7 +188,7 @@ export default function Navbar({ theme, lang, mobileMenuOpen, onToggleMobileMenu
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.95 }}
-                href="https://wa.me/251911000000"
+                href={ctaHref}
                 className="block rounded-3xl bg-[#C8960C] px-4 py-4 text-center text-lg font-semibold uppercase text-[#0A0A0A]"
                 onClick={() => {
                   onToggleMobileMenu(false);
